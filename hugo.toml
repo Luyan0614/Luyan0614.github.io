@@ -1,0 +1,37 @@
+baseURL = "https://luyan0614.github.io/"
+languageCode = "zh-cn"
+title = "Yan Lu 的个人笔记"
+
+theme = "PaperMod"
+
+[params]
+
+defaultTheme = "auto"
+ShowReadingTime = true
+ShowShareButtons = true
+ShowPostNavLinks = true
+
+[params.homeInfoParams]
+
+Title = "👋 Welcome"
+
+Content = """
+这里记录我的学习笔记。
+
+AI
+Python
+Linux
+Programming
+"""
+
+[[menu.main]]
+
+name = "Posts"
+url = "/posts/"
+weight = 1
+
+[[menu.main]]
+
+name = "About"
+url = "/about/"
+weight = 2
