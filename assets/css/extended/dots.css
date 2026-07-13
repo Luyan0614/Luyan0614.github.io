@@ -1,0 +1,82 @@
+/*
+ * 同时匹配普通页面和 PaperMod 首页的 body.list。
+ * !important 用于覆盖主题中 .list 的 background 简写属性；
+ * 否则主题会清除 background-image，导致点阵不可见。
+ */
+body,
+body.list {
+    background-color: var(--theme) !important;
+    background-image: radial-gradient(
+        circle,
+        rgba(80, 110, 160, 0.28) 1.2px,
+        transparent 1.2px
+    ) !important;
+    background-size: 22px 22px !important;
+    background-attachment: fixed;
+}
+
+/*
+ * PaperMod 用 html 的 data-theme 属性切换深色模式，
+ * 并不是 .dark body，因此这里按主题实际结构覆盖。
+ */
+:root[data-theme="dark"] body,
+:root[data-theme="dark"] body.list {
+    background-image: radial-gradient(
+        circle,
+        rgba(160, 190, 255, 0.32) 1.2px,
+        transparent 1.2px
+    ) !important;
+}
+
+/*
+ * 首页 Welcome 卡片：半透明白色，让背后的点阵清楚可见。
+ * backdrop-filter 会轻微模糊卡片后的点阵，保持文字可读。
+ */
+.first-entry.home-info {
+    background-color: rgba(255, 255, 255, 0.45)!important;
+    border: 1px solid rgba(80, 110, 160, 0.18);
+    border-radius: var(--radius);
+    padding: 28px;
+    backdrop-filter: none;
+}
+
+/*
+ * 深色模式下使用半透明深色卡片，避免白色 Welcome 卡片突兀。
+ */
+:root[data-theme="dark"] .first-entry.home-info {
+    background-color: rgba(29, 30, 32, 0.45)!important;
+    border-color: rgba(160, 190, 255, 0.22);
+}
+
+/*
+ * 文章列表卡片保持略高的不透明度，阅读时更舒适。
+ */
+.post-entry,
+.profile_inner {
+    background-color: color-mix(in srgb, var(--entry) 82%, transparent);
+    backdrop-filter: blur(3px);
+}
+
+/*
+ * 不支持 color-mix 的旧浏览器仍可正常显示：
+ * 保持主题原本的不透明背景。
+ */
+@supports not (background-color: color-mix(in srgb, white, transparent)) {
+    .post-entry,
+    .first-entry,
+    .profile_inner {
+        background-color: var(--theme);
+    }
+}
+
+/*
+ * 鼠标悬停文章卡片时，卡片轻微上浮。
+ */
+.post-entry {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.post-entry:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(80, 110, 160, 0.18);
+}
