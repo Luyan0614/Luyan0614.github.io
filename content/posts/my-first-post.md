@@ -13,3 +13,12 @@ draft: false
 - AI
 - Python
 - Linux
+
+
+## 动效网站：
+ -  https://21st.dev/
+ - https://magicui.design/
+ - https://ui.aceternity.com/
+ - https://www.cssdesignawards.com/
+ - https://www.awwwards.com/
+ - https://themes.gohugo.io/
